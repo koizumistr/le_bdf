@@ -22,7 +22,7 @@ feature {ANY}
 
    parse
       local
-         state, i, j: INTEGER; d: INTEGER_8; val_arr: ARRAY[STRING]; c: CHAR
+         state, i, j, i_max: INTEGER; d: INTEGER_8; val_arr: ARRAY[STRING]; c: CHAR
       do
 --         std_output.put_string("full parse%N")
          from
@@ -77,10 +77,11 @@ feature {ANY}
                   state := s_body
                   table.put(c, encoding)
                else
+                  i_max := (bbx + 3) // 4
                   from
                      i := f.last_string.lower
                   until
-                     i > f.last_string.upper
+                     i > i_max
                   loop
                      inspect
                         f.last_string.item(i)
